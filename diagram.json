@@ -1,0 +1,82 @@
+{
+  "version": 1,
+  "author": "Conveyor Belt Health Monitoring Project",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-esp32-devkit-v1", "id": "esp", "top": 0, "left": 0, "attrs": {} },
+    { "type": "wokwi-ds18b20", "id": "ds18b20", "top": -140, "left": 320, "attrs": {} },
+    {
+      "type": "wokwi-resistor",
+      "id": "r1",
+      "top": -110,
+      "left": 380,
+      "rotate": 90,
+      "attrs": { "value": "4700" }
+    },
+    { "type": "wokwi-hc-sr04", "id": "hcsr04", "top": 20, "left": 320, "attrs": {} },
+    { "type": "wokwi-mpu6050", "id": "mpu6050", "top": 180, "left": 320, "attrs": {} },
+    { "type": "wokwi-ec11", "id": "enc1", "top": 320, "left": 320, "attrs": {} },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn_limit",
+      "top": -140,
+      "left": 520,
+      "attrs": { "color": "red" }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn_prox",
+      "top": -20,
+      "left": 520,
+      "attrs": { "color": "blue" }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn_ir",
+      "top": 102.2,
+      "left": 518.4,
+      "attrs": { "color": "green" }
+    },
+    { "type": "wokwi-potentiometer", "id": "pot_load", "top": 220, "left": 520, "attrs": {} },
+    { "type": "wokwi-potentiometer", "id": "pot_current", "top": 340, "left": 520, "attrs": {} },
+    { "type": "wokwi-potentiometer", "id": "pot_voltage", "top": 460, "left": 520, "attrs": {} }
+  ],
+  "connections": [
+    [ "esp:TX0", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX0", "$serialMonitor:TX", "", [] ],
+    [ "ds18b20:VCC", "esp:3V3", "red", [] ],
+    [ "ds18b20:GND", "esp:GND.1", "black", [] ],
+    [ "ds18b20:SIG", "esp:D4", "green", [] ],
+    [ "r1:1", "ds18b20:SIG", "green", [] ],
+    [ "r1:2", "esp:3V3", "red", [] ],
+    [ "hcsr04:VCC", "esp:VIN", "red", [] ],
+    [ "hcsr04:GND", "esp:GND.2", "black", [] ],
+    [ "hcsr04:TRIG", "esp:D5", "yellow", [] ],
+    [ "hcsr04:ECHO", "esp:D18", "orange", [] ],
+    [ "mpu6050:VCC", "esp:3V3", "red", [] ],
+    [ "mpu6050:GND", "esp:GND.3", "black", [] ],
+    [ "mpu6050:SCL", "esp:D22", "blue", [] ],
+    [ "mpu6050:SDA", "esp:D21", "purple", [] ],
+    [ "enc1:VCC", "esp:3V3", "red", [] ],
+    [ "enc1:GND", "esp:GND.1", "black", [] ],
+    [ "enc1:A", "esp:D25", "green", [] ],
+    [ "enc1:B", "esp:D26", "blue", [] ],
+    [ "enc1:SW", "esp:D27", "orange", [] ],
+    [ "btn_limit:1.l", "esp:GND.2", "black", [] ],
+    [ "btn_limit:2.r", "esp:D14", "yellow", [] ],
+    [ "btn_prox:1.l", "esp:GND.3", "black", [] ],
+    [ "btn_prox:2.r", "esp:D13", "yellow", [] ],
+    [ "btn_ir:1.l", "esp:GND.1", "black", [] ],
+    [ "btn_ir:2.r", "esp:D23", "yellow", [] ],
+    [ "pot_load:VCC", "esp:3V3", "red", [] ],
+    [ "pot_load:GND", "esp:GND.2", "black", [] ],
+    [ "pot_load:SIG", "esp:D34", "orange", [] ],
+    [ "pot_current:VCC", "esp:3V3", "red", [] ],
+    [ "pot_current:GND", "esp:GND.3", "black", [] ],
+    [ "pot_current:SIG", "esp:D35", "orange", [] ],
+    [ "pot_voltage:VCC", "esp:3V3", "red", [] ],
+    [ "pot_voltage:GND", "esp:GND.1", "black", [] ],
+    [ "pot_voltage:SIG", "esp:D32", "orange", [] ]
+  ],
+  "dependencies": {}
+}
